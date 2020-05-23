@@ -9,6 +9,9 @@ set(VERSION_PATCH 1)
 #set path for QT
 set(CMAKE_PREFIX_PATH F:/QT/5.10.1/msvc2017_64)
 
+#without console by default
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup")
+
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Instruct CMake to run moc automatically when needed
@@ -18,14 +21,18 @@ set(CMAKE_AUTOUIC ON)
 
 find_package(Qt5 REQUIRED COMPONENTS Core Widgets Gui)
 
+file(GLOB SOURCE_FILE *.cpp)
+file(GLOB UI_FILE *.ui)
+file(GLOB HEAD_FILE *.h)
+
 set(project_ui
-	MainWindow.ui)
+	${UI_FILE})
 
 set(project_headers
-	MainWindow.h)
+	${HEAD_FILE})
 
 set(project_sources
-	demoMain.cpp MainWindow.cpp)
+	${SOURCE_FILE})
 
 add_executable(${PROJECT_NAME} ${project_headers} ${project_ui} ${project_sources})
 
@@ -36,3 +43,18 @@ target_link_libraries(${PROJECT_NAME}
 	Qt5::Gui
 	Qt5::Widgets)
 
+set(CMAKE_INSTALL_PREFIX ${PROJECT_BINARY_DIR}/installed)
+set(WINDEPLOYQT_DIR F:/QT/5.10.1/msvc2017_64/bin)
+#exec windeployqt automatically when build install in VS
+install(CODE "execute_process(COMMAND ${WINDEPLOYQT_DIR}/windeployqt.exe 
+				${PROJECT_BINARY_DIR}/Release/${PROJECT_NAME}.exe)")
+install(DIRECTORY ${PROJECT_BINARY_DIR}/Release/ DESTINATION /)
+
+set(CPACK_GENERATOR NSIS)
+set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
+set(CPACK_PACKAGE_VERSION_MAJOR ${VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR ${VERSION_MINOR})
+set(CPACK_PACKAGE_VERSION_PATCH ${VERSION_PATCH})
+set(CPACK_PACKAGE_INSTALL_DIRECTORY ${PROJECT_NAME})
+
+INCLUDE(CPack)

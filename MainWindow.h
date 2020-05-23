@@ -15,6 +15,8 @@ public:
 	explicit MainWindow(QWidget *parent = nullptr);
 	~MainWindow();
 
+	void openMultiply();
+
 private:
 	Ui::MainWindow *ui;
 };
