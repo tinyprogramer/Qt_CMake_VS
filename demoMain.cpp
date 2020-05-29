@@ -1,6 +1,7 @@
 #include <QApplication>
 #include <iostream>
 #include "mainwindow.h"
+#include "log4cpp/Category.hh"
 
 
 int main(int argc, char *argv[]) {
