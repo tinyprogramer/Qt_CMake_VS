@@ -3,6 +3,9 @@
 #include <iostream>
 #include <QString>
 
+#include "Mylog.h"
+
+
 multiplyDialog::multiplyDialog(QWidget *parent) :
 	QDialog(parent),
 	ui(new Ui::multiplyDialog)
@@ -33,4 +36,7 @@ void multiplyDialog::multiply()
 	else {
 		ui->lineEdit_3->setText("Error");
 	}
+	Mylog* mLogger = Mylog::getInstance();
+	LOG_INFO((l + "*" + r + "=" + ui->lineEdit_3->text()).toStdString());
+	
 }
