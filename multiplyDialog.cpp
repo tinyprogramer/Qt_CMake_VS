@@ -35,4 +35,5 @@ void multiplyDialog::multiply()
 	else {
 		ui->lineEdit_3->setText("Error");
 	}
+	LOG_INFO((ui->lineEdit->text() + "*" + ui->lineEdit_2->text() + "=" + ui->lineEdit_3->text()).toStdString());
 }
