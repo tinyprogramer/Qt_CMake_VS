@@ -1,5 +1,7 @@
 #include "multiplyDialog.h"
 #include "ui_multiplyDialog.h"
+#include "Mylog.h"
+
 #include <iostream>
 #include <QString>
 

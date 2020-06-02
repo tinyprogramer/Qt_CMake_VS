@@ -21,6 +21,12 @@ set(CMAKE_AUTOUIC ON)
 
 find_package(Qt5 REQUIRED COMPONENTS Core Widgets Gui)
 
+set(log4cplus_DIR ${PROJECT_SOURCE_DIR}/lib/log4cplus/lib/cmake/log4cplus)
+find_package(log4cplus REQUIRED)
+if(log4cplus_FOUND)
+	message("found log4cplus ")
+endif()
+
 file(GLOB SOURCE_FILE *.cpp)
 file(GLOB UI_FILE *.ui)
 file(GLOB HEAD_FILE *.h)
@@ -38,10 +44,11 @@ add_executable(${PROJECT_NAME} ${project_headers} ${project_ui} ${project_source
 
 # Use the widgets module from Qt 5
 target_link_libraries(${PROJECT_NAME}
-	PUBLIC
 	Qt5::Core
 	Qt5::Gui
 	Qt5::Widgets)
+	
+target_link_libraries(${PROJECT_NAME} log4cplus::log4cplusU)
 
 set(CMAKE_INSTALL_PREFIX ${PROJECT_BINARY_DIR}/installed)
 set(WINDEPLOYQT_DIR F:/QT/5.10.1/msvc2017_64/bin)
@@ -49,6 +56,9 @@ set(WINDEPLOYQT_DIR F:/QT/5.10.1/msvc2017_64/bin)
 install(CODE "execute_process(COMMAND ${WINDEPLOYQT_DIR}/windeployqt.exe 
 				${PROJECT_BINARY_DIR}/Release/${PROJECT_NAME}.exe)")
 install(DIRECTORY ${PROJECT_BINARY_DIR}/Release/ DESTINATION /)
+
+install(FILES ${PROJECT_SOURCE_DIR}/Mylog.conf DESTINATION /)
+install(FILES ${PROJECT_SOURCE_DIR}/lib/log4cplus/bin/log4cplusU.dll DESTINATION .)
 
 set(CPACK_GENERATOR NSIS)
 set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
