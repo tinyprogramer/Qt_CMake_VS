@@ -1,5 +1,5 @@
-#ifndef MULTIPLYDialog_H
-#define MULTIPLYDialog_H
+#ifndef __MULTIPLYDIALOG_H__
+#define __MULTIPLYDIALOG_H__
 
 #include <QDialog>
 

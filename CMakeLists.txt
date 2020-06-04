@@ -19,7 +19,7 @@ set(CMAKE_AUTOMOC ON)
 # Create code from a list of Qt designer ui files
 set(CMAKE_AUTOUIC ON)
 
-find_package(Qt5 REQUIRED COMPONENTS Core Widgets Gui)
+find_package(Qt5 REQUIRED COMPONENTS Core Widgets Gui WebEngineWidgets)
 
 set(log4cplus_DIR ${PROJECT_SOURCE_DIR}/lib/log4cplus/lib/cmake/log4cplus)
 find_package(log4cplus REQUIRED)
@@ -46,7 +46,8 @@ add_executable(${PROJECT_NAME} ${project_headers} ${project_ui} ${project_source
 target_link_libraries(${PROJECT_NAME}
 	Qt5::Core
 	Qt5::Gui
-	Qt5::Widgets)
+	Qt5::Widgets
+	Qt5::WebEngineWidgets)
 	
 target_link_libraries(${PROJECT_NAME} log4cplus::log4cplusU)
 

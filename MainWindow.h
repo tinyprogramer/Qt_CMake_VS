@@ -1,5 +1,5 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef __MAINWINDOW_H__
+#define __MAINWINDOW_H__
 
 #include <QMainWindow>
 
@@ -16,6 +16,7 @@ public:
 	~MainWindow();
 
 	void openMultiply();
+	void openMap();
 
 private:
 	Ui::MainWindow *ui;
