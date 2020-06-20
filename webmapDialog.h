@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QWebEngineView>
+#include "myChannel.h"
 
 namespace Ui {
 	class webmapDialog;
@@ -17,8 +18,11 @@ public:
 	~webmapDialog();
 	//void multiply();
 
+	void setCity();
+
 private:
 	Ui::webmapDialog *ui;
+	myChannel * _myChannel;
 };
 
 

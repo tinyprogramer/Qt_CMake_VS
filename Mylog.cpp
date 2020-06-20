@@ -49,13 +49,11 @@ void Mylog::error(string& msg)
 
 void Mylog::warn(string& msg)
 {
-	std::cout << "in warn" << std::endl;
 	LOG4CPLUS_WARN(_mCate, LOG4CPLUS_STRING_TO_TSTRING(msg));
 }
 
 void Mylog::debug(string& msg)
 {
-	std::cout << "in debug" << std::endl;
 	LOG4CPLUS_DEBUG(_mCate, LOG4CPLUS_STRING_TO_TSTRING(msg));
 }
 

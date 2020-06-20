@@ -32,7 +32,9 @@ private:
 	
 };
 
-#define postfix(msg)  (std::string(msg))
+#define postfix(msg)  (std::string(msg).append(" [ ")\
+	.append(__FILE__).append(":").append(__func__)\
+	.append(":").append(std::to_string(__LINE__)).append(" ] "))
 
 
 #define LOG_ERROR(msg) Mylog::myLogger->error(postfix(msg)) 
